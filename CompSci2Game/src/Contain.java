@@ -34,7 +34,8 @@ public class Contain {
 
         graphics lol = new graphics();
         lol.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        lol.setSize(500,400);
+        lol.setSize(1000,750);
+        lol.setLocationRelativeTo(null);
         lol.setVisible(true);
 
 
