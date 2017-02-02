@@ -9,12 +9,11 @@ import javax.swing.JLabel;
 public class graphics extends JFrame {
 
 
-
     private JLabel item1;
     private JLabel imageJLabel;
 
 
-    public graphics(){
+    public graphics() {
         super("KEEEP THE BALLOON UUPPPPP");
         setLayout(new FlowLayout());
 
@@ -23,15 +22,17 @@ public class graphics extends JFrame {
         add(item1);
 
 
-        ImageIcon image = new ImageIcon("C:\\Users\\226784\\IdeaProjects\\CompSci2Game\\src\\head.png");
-        JLabel imageLabel = new JLabel(image);
-        imageLabel.setBounds(10,10,400,400);
-        imageLabel.setVisible(true);
+            ImageIcon image = new ImageIcon("C:\\Users\\226784\\IdeaProjects\\CompSci2Game\\src\\head.png");
+            JLabel imageLabel = new JLabel(image);
+            imageLabel.setBounds(10, 10, 400, 400);
+            imageLabel.setVisible(true);
 
-        add(imageLabel);
+            add(imageLabel);
+
+
+
+
 
 
     }
-
-
 }

@@ -69,20 +69,6 @@ public class Main extends JPanel implements ActionListener {
 
     }
 
-    //ADDED JFRAME
-/*
-    public class screen extends JFrame{
-        private JLabel item1;
-
-        public screen(){
-            super("TEST");
-            setLayout(new FlowLayout());
-
-            item1 = new JLabel("TESTTTTTTT");
-            item1.setToolTipText("this is a major teest");
-            add(item1);
-        }
-}*/
     private void loadImages() {
 
         ImageIcon iid = new ImageIcon("dot2.png");
