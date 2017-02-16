@@ -5,101 +5,41 @@
 //import java.swing.*;
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.applet.Applet;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.geom.*;
-import java.io.IOException;
 import java.net.URL;
-import java.awt.image.BufferedImage;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Image;
 
-public class Move extends JPanel implements ActionListener,KeyListener {
-            Timer timer = new Timer(5, this);
-            int ox = 0, oy= 0 , bx = 0 , by=0;
 
-            public Move(){
-                timer.start();
-                addKeyListener(this);
-                setFocusable(true);
-                setFocusTraversalKeysEnabled(false);
-            }
-    public class DrawPanel extends JPanel {
+//http://valk.id.au/blog/awesome/how-to-run-java-applets-in-intellij-idea/
 
-        // graphics lol = new graphics();
+public class Move extends Applet {
 
-        private BufferedImage image;
+     private Image head = null;
 
-        public DrawPanel() {
-            URL resource = getClass().getResource("head.png");
-            try{
-                image = ImageIO.read(resource);
-            } catch(IOException e){
-                e.printStackTrace();
-            }
+    public void paint(Graphics g) {
+        this.setSize(640,480);
+        if (head == null)
+            head = getImage("head.png");
+
+        Graphics2D g2 = (Graphics2D) g;
+        g2.drawImage(head, 30,30, 30, 30, this);
+
+    }
+
+    public Image getImage(String path){
+        Image tempImage = null;
+        try{
+            URL imageURL = Move.class.getResource(path);
+            tempImage = Toolkit.getDefaultToolkit().getImage(imageURL);
         }
 
-        public void paintComponent(Graphics g)
-
-        {
-          super.paintComponent(g);
-            g.drawImage(image, 50, 50, this);
-
+        catch(Exception e){
+            System.out.println("ERROR" + e.getMessage());
         }
+        return tempImage;
     }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-
-
-                 repaint();
-                bx+= ox;
-                by+=bx;
-
-    }
-
-    public void keyTyped(KeyEvent e) {}
-
-    public void up(){
-        ox = 0;
-        oy = 2;
-
-    }
-
-    public void down(){
-        ox =0;
-        oy = -2;
-    }
-
-    public void left(){
-        ox = -2;
-        oy = 0;
-    }
-
-    public void right(){
-        ox = 2;
-        oy = 0;
-    }
-
-
-    @Override
-    public void keyPressed(KeyEvent e) {
-        int keyboard = e.getKeyCode();
-
-        if(keyboard == KeyEvent.VK_UP || keyboard == KeyEvent.VK_W){
-            up();
-        }
-        if(keyboard == KeyEvent.VK_DOWN || keyboard == KeyEvent.VK_S){
-            down();
-        }
-        if(keyboard == KeyEvent.VK_RIGHT|| keyboard == KeyEvent.VK_D){
-            right();
-        }
-        if(keyboard == KeyEvent.VK_LEFT || keyboard == KeyEvent.VK_A){
-            left();
-        }
-
-
-
-    }
-
-    public void keyReleased(KeyEvent e) {}
 }

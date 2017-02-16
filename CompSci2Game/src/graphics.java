@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import javax.swing.*;
 import javax.swing.JLabel;
 
+
 public class graphics extends JFrame {
 
 
@@ -28,6 +29,8 @@ public class graphics extends JFrame {
             imageLabel.setVisible(true);
 
             add(imageLabel);
+
+
 
 
 
