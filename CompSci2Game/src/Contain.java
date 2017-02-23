@@ -40,17 +40,19 @@ public class Contain {
 
 
 
+        JFrame frame = new JFrame();
 
-       // Main n = new Main();
+        Move kk = new Move();
+        frame.getContentPane().add(kk);
 
-        Move s = new Move();
-        s.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        s.setSize(800, 600);
-       // f.add(s);
-        s.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(1000, 500);
+        frame.setVisible(true);
 
 
-       // Move m = new Move();
+
+
+
 
       /*  graphics lol = new graphics();
         lol.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
