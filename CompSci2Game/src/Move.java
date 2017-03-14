@@ -28,16 +28,19 @@ import java.security.Key;
  * Created by 226784 on 1/27/2017.
  */
 
-// ADD jpanels to jframe
 
 public class Move extends JPanel implements ActionListener, KeyListener {
 
         private Image image;
-
-
+        private Image background  = new ImageIcon("C:\\Users\\226784\\IdeaProjects\\CompSci2Game\\src\\background.png").getImage();
+        private Image hand = new ImageIcon ("C:\\Users\\226784\\IdeaProjects\\CompSci2Game\\src\\hand.png").getImage();
+        private Image balloon =  new ImageIcon ("C:\\Users\\226784\\IdeaProjects\\CompSci2Game\\src\\balloon.png").getImage();
 
             Timer t = new Timer(5,this);
             int x=0,y=0, velx=0, vely=0;
+
+            int ballx=500,bally=0,ballvx =0,ballvy=0;
+
 
             public Move(){
                 image = new ImageIcon("C:\\Users\\226784\\IdeaProjects\\CompSci2Game\\src\\head.png").getImage();
@@ -47,25 +50,40 @@ public class Move extends JPanel implements ActionListener, KeyListener {
                 setFocusTraversalKeysEnabled(false);
             }
 
+
+
             public void paintComponent(Graphics g){
 
                     super.paintComponent(g);
-                    g.drawImage(image, x, y, this);
+
+                    g.drawImage(background,0,0,this);
+                    g.drawImage(hand, x, y, this);
+                    g.drawImage(balloon,ballx,bally,this);
+
 
 
             }
 
 
+
+
             public void actionPerformed(ActionEvent e){
-                if (x < 0 || x > 760){
+
+
+
+                //if(x==(ballx) && y == (bally) || x == ballx && y <=(bally+50 )
+                    ballvy = 1;
+
+                if (x < 0 || x > 1920){
                     velx = -velx;
                 }
-                if (y < 0 || y > 560){
+                if (y < 0 || y >1080){
                     vely = -vely;
                 }
                 repaint();
                 x += velx;
                 y += vely;
+                bally += ballvy;
             }
             public void up(){
                 vely = -2;

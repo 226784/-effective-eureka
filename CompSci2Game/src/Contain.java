@@ -46,7 +46,8 @@ public class Contain {
         frame.getContentPane().add(kk);
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1000, 500);
+        frame.setSize(1920,1080);
+        frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
 
