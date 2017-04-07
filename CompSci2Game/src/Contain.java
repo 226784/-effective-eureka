@@ -38,9 +38,10 @@ public class Contain {
 
 */
 
+              new MainMenu();
 
-
-        JFrame frame = new JFrame();
+// THIS IS REAL ONE
+        /*JFrame frame = new JFrame();
 
         Move kk = new Move();
         frame.getContentPane().add(kk);
@@ -50,7 +51,7 @@ public class Contain {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
 
-
+*/
 
 
 

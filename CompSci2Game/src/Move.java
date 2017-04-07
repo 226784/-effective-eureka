@@ -3,7 +3,6 @@
  */
 
 
-import kotlin.reflect.jvm.internal.impl.descriptors.EffectiveVisibility;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -17,9 +16,13 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import javax.swing.JFrame;
 import javax.swing.ImageIcon;
+import javax.swing.event.MouseInputListener;
 import java.awt.Image;
 import java.awt.geom.*;
 import java.security.Key;
+import java.util.Random;
+
+//MAIN MENU http://www.java2s.com/Code/Java/Swing-JFC/Createamainmenu.htm
 
 
 //http://valk.id.au/blog/awesome/how-to-run-java-applets-in-intellij-idea/
@@ -28,8 +31,9 @@ import java.security.Key;
  * Created by 226784 on 1/27/2017.
  */
 
-
-public class Move extends JPanel implements ActionListener, KeyListener {
+//MOUSE MOVEMENT  - http://stackoverflow.com/questions/15329664/java-swing-mousemoved-not-working-at-all
+// MOuse movemnt -> http://stackoverflow.com/questions/15329664/java-swing-mousemoved-not-working-at-all
+public class Move extends JPanel implements ActionListener, KeyListener,MouseMotionListener {
 
         private Image image;
         private Image background  = new ImageIcon("C:\\Users\\226784\\IdeaProjects\\CompSci2Game\\src\\background.png").getImage();
@@ -39,20 +43,37 @@ public class Move extends JPanel implements ActionListener, KeyListener {
             Timer t = new Timer(5,this);
             int x=0,y=0, velx=0, vely=0;
 
-            int ballx=500,bally=0,ballvx =0,ballvy=0;
+            int ballx=500,bally=0,ballvy=5;
+
+            int ballvx = 0;
+
+           // Random rand = new Random();
+            //int ballvx = rand.nextInt(10) +1;
 
 
             public Move(){
                 image = new ImageIcon("C:\\Users\\226784\\IdeaProjects\\CompSci2Game\\src\\head.png").getImage();
                 t.start();
                 addKeyListener(this);
+                addMouseMotionListener(this);
                 setFocusable(true);
                 setFocusTraversalKeysEnabled(false);
+                hideMouse();
             }
 
+            // INVISIBLE CURSOR https://coderanch.com/t/343980/java/mouse-disappear-Java
 
 
-            public void paintComponent(Graphics g){
+    private void hideMouse() {
+        ImageIcon emptyIcon = new ImageIcon(new byte[0]);
+        Cursor invisibleCursor = getToolkit().createCustomCursor(
+                emptyIcon.getImage(), new Point(0,0), "Invisible");
+        this.setCursor(invisibleCursor);
+
+    }
+
+
+    public void paintComponent(Graphics g){
 
                     super.paintComponent(g);
 
@@ -62,17 +83,27 @@ public class Move extends JPanel implements ActionListener, KeyListener {
 
 
 
+
+
             }
 
 
 
+// *******MOVE COLLISION TO ANOTHER MAETHOD****//
+// GRAVITY http://stackoverflow.com/questions/6111574/a-player-falling-system-basically-gravity
+    /// ANGLED COLLISIONS
+    // http://stackoverflow.com/questions/27599173/computing-collision-angles
+    // https://gamedevelopment.tutsplus.com/tutorials/when-worlds-collide-simulating-circle-circle-collisions--gamedev-769
 
-            public void actionPerformed(ActionEvent e){
+    public void actionPerformed(ActionEvent e){
+
+                if(x==(ballx) && y==(bally) || x <= (ballx+100) && y<=(bally+130) && x >= ballx && y>=bally ) {
+                    ballvy = -(Math.abs(ballvy));
 
 
+                }
 
-                //if(x==(ballx) && y == (bally) || x == ballx && y <=(bally+50 )
-                    ballvy = 1;
+
 
                 if (x < 0 || x > 1920){
                     velx = -velx;
@@ -80,10 +111,17 @@ public class Move extends JPanel implements ActionListener, KeyListener {
                 if (y < 0 || y >1080){
                     vely = -vely;
                 }
+        if (ballx < 0 || ballx > 1920){
+            ballvx = -ballvx;
+        }
+        if (bally < 0 || bally >1080){
+            ballvy = -ballvy;
+        }
                 repaint();
                 x += velx;
                 y += vely;
                 bally += ballvy;
+
             }
             public void up(){
                 vely = -2;
@@ -119,6 +157,16 @@ public class Move extends JPanel implements ActionListener, KeyListener {
 
 
                 }
+            }
+
+    public void mouseDragged(MouseEvent e) {
+    }
+
+    public void mouseMoved(MouseEvent e){
+                x = e.getX();
+                y = e.getY();
+                repaint();
+
             }
             public void keyTyped(KeyEvent e) {}
             public void keyReleased(KeyEvent e) {}
