@@ -43,9 +43,10 @@ public class Move extends JPanel implements ActionListener, KeyListener,MouseMot
             Timer t = new Timer(5,this);
             int x=0,y=0, velx=0, vely=0;
 
-            int ballx=500,bally=0,ballvy=5;
+            int ballx=500,bally=0;
 
-            int ballvx = 0;
+            int ballvy=5;
+            int ballvx = 5;
 
            // Random rand = new Random();
             //int ballvx = rand.nextInt(10) +1;
@@ -89,7 +90,7 @@ public class Move extends JPanel implements ActionListener, KeyListener,MouseMot
 
 
 
-// *******MOVE COLLISION TO ANOTHER MAETHOD****//
+// *******MOVE COLLISION TO ANOTHER CLASS****//
 // GRAVITY http://stackoverflow.com/questions/6111574/a-player-falling-system-basically-gravity
     /// ANGLED COLLISIONS
     // http://stackoverflow.com/questions/27599173/computing-collision-angles
@@ -97,11 +98,18 @@ public class Move extends JPanel implements ActionListener, KeyListener,MouseMot
 
     public void actionPerformed(ActionEvent e){
 
+        Random rand = new Random();
+        Random rand2 = new Random();
+
                 if(x==(ballx) && y==(bally) || x <= (ballx+100) && y<=(bally+130) && x >= ballx && y>=bally ) {
                     ballvy = -(Math.abs(ballvy));
 
 
+                    ballvx = rand.nextInt(10);
+
+
                 }
+
 
 
 
@@ -111,6 +119,7 @@ public class Move extends JPanel implements ActionListener, KeyListener,MouseMot
                 if (y < 0 || y >1080){
                     vely = -vely;
                 }
+
         if (ballx < 0 || ballx > 1920){
             ballvx = -ballvx;
         }
@@ -121,8 +130,14 @@ public class Move extends JPanel implements ActionListener, KeyListener,MouseMot
                 x += velx;
                 y += vely;
                 bally += ballvy;
+                ballx += ballvx;
 
-            }
+
+
+
+
+
+    }
             public void up(){
                 vely = -2;
                 velx = 0;

@@ -21,6 +21,7 @@ public class MainMenu implements ActionListener {
         JFrame menu = new JFrame("Menu");
         menu.setSize(1920,1080);
 
+
         menu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
